@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module for the entry point of the command interpreter."""
+"""This is the Module of the entry point of command interpreter."""
 
 import cmd
 from models.base_model import BaseModel
@@ -10,17 +10,17 @@ import json
 
 class HBNBCommand(cmd.Cmd):
 
-    """Class for the command interpreter."""
+    """command interpreter class."""
 
     prompt = "(hbnb) "
 
     def default(self, line):
-        """Catch commands if nothing else matches then."""
+        """if nothing else matches then catch command."""
         # print("DEF:::", line)
         self._precmd(line)
 
     def _precmd(self, line):
-        """Intercepts commands to test for class.syntax()"""
+        """testing for class.syntax()"""
         # print("PRECMD:::", line)
         match = re.search(r"^(\w*)\.(\w+)(?:\(([^)]*)\))$", line)
         if not match:
@@ -56,11 +56,11 @@ class HBNBCommand(cmd.Cmd):
         s = s_dict.replace("'", '"')
         d = json.loads(s)
         if not classname:
-            print("** class name missing **")
+            print("** class missing **")
         elif classname not in storage.classes():
             print("** class doesn't exist **")
         elif uid is None:
-            print("** instance id missing **")
+            print("** id missing **")
         else:
             key = "{}.{}".format(classname, uid)
             if key not in storage.all():
